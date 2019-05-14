@@ -67,11 +67,20 @@ export default class Dashboard extends Component {
       }
     ];
 
+    renderItemDeck = ({ item }) => {
+      return (
+        <View style={styles.line}>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.total}>{item.email} Cards</Text>
+        </View>
+      ) 
+    }
+    
     return (
       <View style={styles.container}>
         <FlatList
           data={teste}
-          renderItem={({ item }) => <Deck key={item.email} {...item} />}
+          renderItem={ this.renderItemDeck }
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
@@ -88,5 +97,23 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingLeft: 5,
     paddingRight: 5
+  },
+   line: {
+    alignItems: "center",
+    padding: 24,
+    borderRadius: 5,
+    margin: 2,
+    backgroundColor: darkCyan
+  },
+  name: {
+    fontFamily: "Verdana",
+    fontSize: 18,
+    color: white,
+    fontWeight: "bold"
+  },
+  total: {
+    fontFamily: "Verdana",
+    fontSize: 14,
+    color: lightGray
   }
 });

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-class FormQuestion extends Component {
+export default class AddQuestion extends Component {
   render() {
     <View style={styles.container}>
       <Text>FormQuestion</Text>

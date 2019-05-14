@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-class FormDeck extends Component {
+export default class AddDeck extends Component {
   render() {
     <View style={styles.container}>
       <Text>FormDeck</Text>

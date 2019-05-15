@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
-import Deck from "./Deck";
+import { white, lightGray, bodyColor, windowColor } from "../styles/colors";
 
 export default class Dashboard extends Component {
-  renderItem = ({ item }) => {
-    return <Deck {...item} />;
-  };
+
+  renderItemDeck = ({ item }) => {
+    return (
+      <View style={styles.line}>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.total}>{item.email} Cards</Text>
+      </View>
+    ) 
+  }
 
   render() {
     const teste = [
@@ -65,17 +71,7 @@ export default class Dashboard extends Component {
         name: "corvus",
         email: "corvus1@appdividend.com"
       }
-    ];
-
-    renderItemDeck = ({ item }) => {
-      return (
-        <View style={styles.line}>
-          <Text style={styles.name}>{item.name}</Text>
-          <Text style={styles.total}>{item.email} Cards</Text>
-        </View>
-      ) 
-    }
-    
+    ];    
     return (
       <View style={styles.container}>
         <FlatList
@@ -96,14 +92,15 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     marginTop: 50,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    backgroundColor:bodyColor
   },
    line: {
     alignItems: "center",
     padding: 24,
     borderRadius: 5,
     margin: 2,
-    backgroundColor: darkCyan
+    backgroundColor: windowColor
   },
   name: {
     fontFamily: "Verdana",

@@ -1,25 +1,39 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { white, darkCyan, lightGray } from "../utils/colors";
+import { white, darkCyan, bodyColor,windowColor, lightGray } from "../styles/colors";
+
 
 export default class Deck extends Component {
   render() {
     return (
-      <View style={styles.line}>
-        <Text style={styles.name}>{this.props.name}</Text>
-        <Text style={styles.total}>{this.props.email} Cards</Text>
+      <View style={styles.container}>
+        <View style={styles.line}>
+          <Text style={styles.name}>Deck</Text>
+          <Text style={styles.total}> 0 Cards</Text>
+        </View>
+        <View style={styles.line}>
+          <Text style={styles.name}>Deck</Text>
+          <Text style={styles.total}> 0 Cards</Text>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    alignItems:'center',
+    padding:5,
+    marginTop:50,
+  },
   line: {
     alignItems: "center",
+    alignSelf:'stretch',
     padding: 24,
-    borderRadius: 5,
-    margin: 2,
-    backgroundColor: darkCyan
+    borderRadius: 7,
+    backgroundColor: windowColor,
+    marginTop:5
   },
   name: {
     fontFamily: "Verdana",

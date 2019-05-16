@@ -93,7 +93,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingLeft: 5,
     paddingRight: 5,
-    backgroundColor:bodyColor
+    backgroundColor:bodyColor,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
   },
    line: {
     alignItems: "center",

@@ -1,86 +1,54 @@
-import React, { Component } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
-import { white, lightGray, bodyColor, windowColor } from "../styles/colors";
+import React, { Component } from "react"
+import { View, FlatList, Text, StyleSheet } from "react-native"
+import { white, lightGray, bodyColor, windowColor } from "../styles/colors"
+import { AppLoading } from "expo"
+import { connect } from "react-redux"
+import { getDecks } from "../utils/api"
+import { receiveDecks } from "../actions"
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
+  state = {
+    loading: true
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+
+    getDecks()
+      .then(entries => dispatch(receiveDecks(entries)))
+      .then(() => this.setState(() => ({ loading: false })))
+  }
 
   renderItemDeck = ({ item }) => {
     return (
       <View style={styles.line}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.total}>{item.email} Cards</Text>
+        <Text style={styles.name}>{item.title}</Text>
+        <Text style={styles.total}>
+          {Object.keys(item.questions).length} Cards
+        </Text>
       </View>
-    ) 
+    )
   }
 
   render() {
-    const teste = [
-      {
-        name: "Proxima Midnight",
-        email: "proxima@appdividend.com"
-      },
-      {
-        name: "Ebony Maw",
-        email: "ebony@appdividend.com"
-      },
-      {
-        name: "Black Dwarf",
-        email: "dwarf@appdividend.com"
-      },
-      {
-        name: "Mad Titan",
-        email: "thanos@appdividend.com"
-      },
-      {
-        name: "Supergiant",
-        email: "supergiant@appdividend.com"
-      },
-      {
-        name: "Loki",
-        email: "loki@appdividend.com"
-      },
-      {
-        name: "corvus",
-        email: "corvus@appdividend.com"
-      },
-      {
-        name: "Proxima Midnight",
-        email: "proxima1@appdividend.com"
-      },
-      {
-        name: "Ebony Maw",
-        email: "ebony1@appdividend.com"
-      },
-      {
-        name: "Black Dwarf",
-        email: "dwarf1@appdividend.com"
-      },
-      {
-        name: "Mad Titan",
-        email: "thanos1@appdividend.com"
-      },
-      {
-        name: "Supergiant",
-        email: "supergiant1@appdividend.com"
-      },
-      {
-        name: "Loki",
-        email: "loki1@appdividend.com"
-      },
-      {
-        name: "corvus",
-        email: "corvus1@appdividend.com"
-      }
-    ];    
+    const { loading } = this.state
+    const { decks } = this.props
+
+    if (loading) <AppLoading />
+
     return (
       <View style={styles.container}>
-        <FlatList
-          data={teste}
-          renderItem={ this.renderItemDeck }
-          keyExtractor={(item, index) => index.toString()}
-        />
+        {decks === null ? (
+          <Text>You have not decks registered</Text> // this only appears on error
+        ) : (
+          <FlatList
+            data={Object.values(decks)}
+            renderItem={this.renderItemDeck}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
       </View>
-    );
+    )
   }
 }
 
@@ -93,18 +61,22 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingLeft: 5,
     paddingRight: 5,
-    backgroundColor:bodyColor,
-    shadowColor: '#000',
+    backgroundColor: bodyColor,
+    shadowColor: "#000",
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowRadius: 3
   },
-   line: {
+  line: {
     alignItems: "center",
     padding: 24,
     borderRadius: 5,
-    margin: 2,
-    backgroundColor: windowColor
+    margin: 4,
+	backgroundColor: windowColor,
+	shadowColor: '#000',
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 3,
   },
   name: {
     fontFamily: "Verdana",
@@ -117,4 +89,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: lightGray
   }
-});
+})
+
+const mapStateToProps = decks => {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)

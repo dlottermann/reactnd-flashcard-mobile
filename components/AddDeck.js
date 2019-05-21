@@ -29,13 +29,10 @@ export default class AddDeck extends Component {
   submit = () => {
     const {navigation, screenProps} = this.props
     const key = uuidv1()
-    const title = this.state
+    const { title } = this.state
     
     saveDeckTitle( key, title )
-    .then(this.setState(()=> ({title:''})))
-    screenProps.newDeck({navigation, item})
-    navigation.goBack()
-   
+    .then(this.setState(()=> ({title:''})))   
 
   }
 

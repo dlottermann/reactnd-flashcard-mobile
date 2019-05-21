@@ -2,6 +2,7 @@ import React from "react"
 import { StyleSheet, Platform, View } from "react-native"
 import Dashboard from "./components/Dashboard"
 import AddDeck from "./components/AddDeck"
+import Deck from "./components/Deck"
 import { bodyColor, white, purple } from "./styles/colors"
 import { createStore } from "redux"
 import { Provider } from "react-redux"
@@ -9,7 +10,8 @@ import reducer from "./reducers"
 import {
   createBottomTabNavigator,
   createMaterialTopTabNavigator,
-  createAppContainer
+  createAppContainer,
+  createStackNavigator
 } from "react-navigation"
 
 export default class App extends React.Component {
@@ -17,7 +19,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
-          <TabsContainer />
+          <MainNavigator />
         </View>
       </Provider>
     )
@@ -64,7 +66,26 @@ const Tabs =
     ? createBottomTabNavigator(RouteConfigs, TabNavigatorConfig)
     : createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig)
 
-const TabsContainer = createAppContainer(Tabs)
+// const TabsContainer = createAppContainer(Tabs)
+
+const MainNavigator = createAppContainer(createStackNavigator({
+  home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: bodyColor,
+      },
+    }),
+  },
+}));
+
 
     
 const styles = StyleSheet.create({

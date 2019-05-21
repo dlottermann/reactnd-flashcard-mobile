@@ -9,7 +9,8 @@ import {
 import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
 import uuidv1 from 'uuid/v1'
 import {saveDeckTitle} from '../utils/api'
-
+import { connect } from "react-redux"
+import { addDeck } from "../actions"
 
 SubmitDeckBtn = ({ onPress }) => {
   return (
@@ -21,19 +22,21 @@ SubmitDeckBtn = ({ onPress }) => {
   )
 }
 
-export default class AddDeck extends Component {
+class AddDeck extends Component {
   state = {
     title: ""
   }
 
   submit = () => {
-    const {navigation, screenProps} = this.props
+    const { navigation } = this.props
     const key = uuidv1()
     const { title } = this.state
     
     saveDeckTitle( key, title )
     .then(this.setState(()=> ({title:''})))   
-
+    
+    navigation.goBack()
+ 
   }
 
   render() {
@@ -97,3 +100,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
+
+const mapStateToProps = decks => {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(AddDeck)

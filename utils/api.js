@@ -1,8 +1,6 @@
 import { AsyncStorage } from 'react-native'
 import {FLASHCARD_STORAGE_KEY, formatDecksResults} from './_decks'
 
-
-
 // getDecks: retorna todos os baralhos com seus títulos, perguntas, e respostas. 
 
 export const getDecks = () => {
@@ -16,9 +14,16 @@ export const getDeck = (id) => {
 
 // saveDeckTitle: dado um único argumento title, ele adiciona-o aos baralhos. 
 
-export const saveDeckTitle = ({deckTitle, key}) => {
+export const saveDeckTitle = ( key, deck ) => {
+
+    const newDeck = {
+        title:deck.title,
+        key: key,
+        questions: []
+      }
+
     return AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify({
-        [key]: deckTitle
+       [key]:newDeck
     }))
 }
 

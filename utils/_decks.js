@@ -1,5 +1,5 @@
 import { AsyncStorage } from "react-native"
-export const FLASHCARD_STORAGE_KEY = "FlashCard:decks"
+export const FLASHCARD_STORAGE_KEY = "FlashCardMobile"
 
 //Criar default decks
 let decks = {
@@ -29,9 +29,9 @@ let decks = {
 }
 
 export const setDefault = () => {
+  console.log('passou')
   AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(decks))
   return decks
 }
 
-export const formatDecksResults = results =>
-  results === null ? setDefault() : JSON.parse(results)
+export const formatDecksResults = results => results === null ? setDefault() : JSON.parse(results)

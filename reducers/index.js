@@ -1,4 +1,4 @@
-import { GET_DECKS } from "../actions"
+import { GET_DECKS, ADD_DECK, ADD_CARD } from "../actions"
 
 const reducerDecks = (state = {}, action) => {
   switch (action.type) {
@@ -6,6 +6,11 @@ const reducerDecks = (state = {}, action) => {
       return {
         ...state,
         ...action.decks
+      }
+    case ADD_DECK:
+      return{
+        ...state,
+        ...action.deck
       }
 
     default:

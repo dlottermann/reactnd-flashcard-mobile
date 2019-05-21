@@ -1,10 +1,11 @@
 import React, { Component } from "react"
-import { View, FlatList, Text, StyleSheet } from "react-native"
+import { View, FlatList, Text, StyleSheet, AsyncStorage } from "react-native"
 import { white, lightGray, bodyColor, windowColor } from "../styles/colors"
 import { AppLoading } from "expo"
 import { connect } from "react-redux"
 import { getDecks } from "../utils/api"
 import { receiveDecks } from "../actions"
+
 
 class Dashboard extends Component {
   state = {
@@ -13,18 +14,18 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-
+    // AsyncStorage.clear()
     getDecks()
       .then(entries => dispatch(receiveDecks(entries)))
       .then(() => this.setState(() => ({ loading: false })))
   }
-
+  
   renderItemDeck = ({ item }) => {
     return (
       <View style={styles.line}>
         <Text style={styles.name}>{item.title}</Text>
         <Text style={styles.total}>
-          {Object.keys(item.questions).length} Cards
+          {Object.values(item.questions).length} Cards
         </Text>
       </View>
     )
@@ -34,11 +35,12 @@ class Dashboard extends Component {
     const { loading } = this.state
     const { decks } = this.props
 
+    
     if (loading) <AppLoading />
 
     return (
       <View style={styles.container}>
-        {decks === null ? (
+        { !decks ? (
           <Text>You have not decks registered</Text> // this only appears on error
         ) : (
           <FlatList

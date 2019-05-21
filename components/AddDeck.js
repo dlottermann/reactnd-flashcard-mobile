@@ -4,10 +4,12 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  StyleSheet,
-  Button
+  StyleSheet
 } from "react-native"
 import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
+import uuidv1 from 'uuid/v1'
+import {saveDeckTitle} from '../utils/api'
+
 
 SubmitDeckBtn = ({ onPress }) => {
   return (
@@ -21,23 +23,32 @@ SubmitDeckBtn = ({ onPress }) => {
 
 export default class AddDeck extends Component {
   state = {
-    titleDeck: ""
+    title: ""
   }
 
   submit = () => {
-    console.log("saving")
+    const {navigation, screenProps} = this.props
+    const key = uuidv1()
+    const title = this.state
+    
+    saveDeckTitle( key, title )
+    .then(this.setState(()=> ({title:''})))
+    screenProps.newDeck({navigation, item})
+    navigation.goBack()
+   
+
   }
 
   render() {
-    const { titleDeck } = this.state
+    const { title } = this.state
 
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.name}>What is the title of your new deck?</Text>
         <TextInput
-          value={titleDeck}
+          value={title}
           style={styles.input}
-          onChangeText={titleDeck => this.setState({ titleDeck })}
+          onChangeText={title => this.setState({ title })}
         />
         <SubmitDeckBtn onPress={this.submit} />
       </KeyboardAvoidingView>

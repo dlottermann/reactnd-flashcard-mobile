@@ -16,6 +16,15 @@ const SubmitDeckBtn = ({ onPress, title, ...props }) => {
   )
 }
 
+ const getSheet = (iconSize, iconColor) => {
+        return StyleSheet.create({
+            icon : {
+                color: iconColor,
+                fontSize: iconSize
+            }
+        })
+    }
+
 const styles = StyleSheet.create({
     submitBtn: {
       backgroundColor: deepPinkHot,

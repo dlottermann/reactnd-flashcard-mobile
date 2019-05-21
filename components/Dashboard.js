@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, FlatList, Text, StyleSheet, AsyncStorage } from "react-native"
+import { View, FlatList, Text, StyleSheet, AsyncStorage, TouchableOpacity } from "react-native"
 import { white, lightGray, bodyColor, windowColor } from "../styles/colors"
 import { AppLoading } from "expo"
 import { connect } from "react-redux"
@@ -19,15 +19,24 @@ class Dashboard extends Component {
       .then(entries => dispatch(receiveDecks(entries)))
       .then(() => this.setState(() => ({ loading: false })))
   }
-  
+
+ /* onPress={() => this.props.navigation.navigate(
+              'EntryDetail',
+              { entryId: key }
+            )} */
+
   renderItemDeck = ({ item }) => {
     return (
+    <TouchableOpacity 
+ 	onPress={() => console.log('Pressed!')}    
+	> 
       <View style={styles.line}>
         <Text style={styles.name}>{item.title}</Text>
         <Text style={styles.total}>
           {Object.values(item.questions).length} Cards
         </Text>
       </View>
+	</TouchableOpacity>
     )
   }
 

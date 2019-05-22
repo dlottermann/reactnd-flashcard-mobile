@@ -29,7 +29,8 @@ class Deck extends Component {
         />
         <SubmitDeckBtn
           title="Start Quiz"
-          backColor={orange}
+          backColor={orange},
+          onPress={()=>{ this.props.navigation.navigate('Quiz',{}) } }
         />
       </View>
     )

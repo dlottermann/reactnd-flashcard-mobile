@@ -11,8 +11,9 @@ import uuidv1 from 'uuid/v1'
 import {saveDeckTitle} from '../utils/api'
 import { connect } from "react-redux"
 import { addDeck } from "../actions"
+import { StyledButton } from '../shared/StyledButton'
 
-SubmitDeckBtn = ({ onPress }) => {
+/*SubmitDeckBtn = ({ onPress }) => {
   return (
       <TouchableOpacity
        style={styles.submitBtn}
@@ -20,7 +21,7 @@ SubmitDeckBtn = ({ onPress }) => {
           <Text style={styles.submitBtnText}>Create Deck</Text>
       </TouchableOpacity>
   )
-}
+}*/
 
 class AddDeck extends Component {
   state = {
@@ -61,7 +62,7 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={title => this.setState({ title })}
         />
-        <SubmitDeckBtn onPress={this.submit} title='Create Deck' />
+        <SubmitDeckBtn onPress={this.submit} title='Create Deck' backColor={ deepPinkHot } />
       </KeyboardAvoidingView>
     )
   }

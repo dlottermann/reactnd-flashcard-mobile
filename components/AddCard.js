@@ -5,9 +5,12 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   StyleSheet
-
 } from "react-native"
 import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
+import {saveDeckTitle} from '../utils/api'
+import { connect } from "react-redux"
+import { addCard } from "../actions"
+
 
 SubmitDeckBtn = ({ onPress }) => {
   return (
@@ -19,35 +22,31 @@ SubmitDeckBtn = ({ onPress }) => {
   )
 }
 
-export default class AddCard extends Component {
+class AddCard extends Component {
   state = {
     question: '',
     answer:''
   }
 
   submit = () => {
-    console.log("saving card")
-
-    // const { navigation } = this.props
-
-    // const key = uuidv1()
+   
+     const { navigation, key } = this.props    
+     const { question, answer } = this.state
     
-    // const { question, answer } = this.state
-    
-    // const newQuestion = {
-    //   question,
-    //   answer
-    // }
+     const newCard = {
+       question,
+       answer
+     }
 
-    // this.props.dispatch(addDeck({
+    // this.props.dispatch(addCard({
     //   [key]: newDeck
     // }))
 
 
-    // saveDeckTitle(key, newDeck)
-    // .then(this.setState(()=> ({title:''})))   
+     addCardToDeck(key, newCard)
+     .then(this.setState(()=> ({question:'', answer:''})))   
     
-    // navigation.goBack()
+     navigation.goBack()
 
   }
 
@@ -118,3 +117,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
+
+const mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps)(AddCard)

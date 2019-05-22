@@ -11,17 +11,7 @@ import uuidv1 from 'uuid/v1'
 import {saveDeckTitle} from '../utils/api'
 import { connect } from "react-redux"
 import { addDeck } from "../actions"
-import { StyledButton } from '../shared/StyledButton'
-
-/*SubmitDeckBtn = ({ onPress }) => {
-  return (
-      <TouchableOpacity
-       style={styles.submitBtn}
-       onPress={onPress}>
-          <Text style={styles.submitBtnText}>Create Deck</Text>
-      </TouchableOpacity>
-  )
-}*/
+import { StyledButton } from './shared/StyledButton'
 
 class AddDeck extends Component {
   state = {
@@ -113,10 +103,4 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = decks => {
-  return {
-    decks
-  }
-}
-
-export default connect(mapStateToProps)(AddDeck)
+export default connect()(AddDeck)

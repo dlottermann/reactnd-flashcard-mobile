@@ -1,8 +1,16 @@
 import React, { Component } from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { white, windowColor } from "../styles/colors"
+import { connect } from 'react-redux'
 
-export default class Quiz extends Component {
+class Quiz extends Component {
+  state = {
+    questions:0,
+    showAnswer:false,
+    correct:0,
+    incorrect:0
+  }
+  
   render() {
     return (
       <View style={styles.container}>
@@ -24,3 +32,13 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 })
+
+const mapStateToProps = (state, { navigation }) => {
+  const { deckId } = navigation.state.params;
+  return {
+    deckId,
+    deck: state[deckId],
+  };
+}
+
+export default connect(mapStateToProps)(Quiz)

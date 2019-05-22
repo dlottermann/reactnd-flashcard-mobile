@@ -30,23 +30,15 @@ class AddCard extends Component {
 
   submit = () => {
    
-     const { navigation, key } = this.props    
-     const { question, answer } = this.state
-    
-     const newCard = {
-       question,
-       answer
-     }
+     const { navigation, deckId, dispatch } = this.props    
+     const newCard = this.state
 
-    // this.props.dispatch(addCard({
-    //   [key]: newDeck
-    // }))
+     this.props.dispatch(addCard({ deckId, newDeck }))
 
-
-     addCardToDeck(key, newCard)
+     addCardToDeck(deckId, newCard)
      .then(this.setState(()=> ({question:'', answer:''})))   
     
-     navigation.goBack()
+     navigation.navigate('Deck',{deckId:deckId})
 
   }
 
@@ -118,9 +110,10 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,{ navigation }) => {
+ const { deckId } = navigation.state.params
   return {
-    state
+    deckId,
   }
 }
 

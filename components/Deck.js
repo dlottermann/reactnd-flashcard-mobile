@@ -8,25 +8,16 @@ import {
   orange,
   deepPinkHot
 } from "../styles/colors"
+import { StyledButton } from './shared/StyledButton'
+import { connect } from "react-redux"
 
-SubmitDeckBtn = ({ onPress, title, backColor }) => {
-  return (
-    <TouchableOpacity
-      style={[styles.submitBtn, { backgroundColor: backColor || deepPinkHot }]}
-      onPress={onPress}
-    >
-      <Text style={styles.submitBtnText}>{title}</Text>
-    </TouchableOpacity>
-  )
-}
-export default class Deck extends Component {
+class Deck extends Component {
   render() {
     const { title } = this.props.navigation.state.params.deck
     return (
       <View style={styles.line}>
         <Text style={styles.name}>{title}</Text>
         <Text style={styles.total}>
-          {" "}
           {this.props.navigation.state.params.total} Cards
         </Text>
         <SubmitDeckBtn
@@ -72,17 +63,16 @@ const styles = StyleSheet.create({
     fontFamily: "Verdana",
     fontSize: 14,
     color: lightGray
-  },
-
-  submitBtn: {
-    width: "90%",
-    padding: 16,
-    borderRadius: 3,
-    marginTop: 6
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 16,
-    textAlign: "center"
   }
 })
+
+const mapStateToProps = (state, { navigation }) => {
+  const { deckId } = navigation.state.params;
+  return {
+    deckId,
+    deck: state[deckId],
+  };
+}
+
+
+export default connect(mapStateToProps)(Deck)

@@ -13,7 +13,6 @@ export const getDeck = (id) => {
 }
 
 // saveDeckTitle: dado um único argumento title, ele adiciona-o aos baralhos. 
-
 export const saveDeckTitle = (  key, deck  ) => {
     return AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify({
        [key]:deck
@@ -23,17 +22,10 @@ export const saveDeckTitle = (  key, deck  ) => {
 
 // addCardToDeck: dado dois argumentos, title e card, ele adiciona o cartão à lista de perguntas ao baralho com o título associado. 
 export const addCardToDeck = (key, card) => {
-    return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then((result) => {
-        let decks = JSON.parse(result)
-
+    return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then((data) => {
+        let decks = JSON.parse(data)
         console.log(decks)    
-
-        //decks[key].questions.push({question: question, answer: answer})
-        //AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify(decks))
+        decks[key].questions.concat([card])
+        AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify(decks))
     })
-}
-
-//RemoveDeck: dado um único argumento title (ou ID), ele remove um baralho. 
-export const removeDeck = (id) => {
-
 }

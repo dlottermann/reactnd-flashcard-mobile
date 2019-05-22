@@ -6,30 +6,26 @@ import {
 } from "react-native"
 import { white, deepPinkHot } from "../../styles/colors"
 
-const StyledButton = ( onPress, title ) => {
+export default const StyledButton = ({
+  title = 'Click Me!',
+  onPress,
+  backColor = deepPinkHot,
+}) => {
   return (
       <TouchableOpacity
-       style={styles.submitBtn}
+       style={[styles.submitBtn,{ backgroundColor: backColor }]}
        onPress={onPress}>
-          <Text style={styles.submitBtnText}>{title||'teste'}</Text>
+          <Text style={styles.submitBtnText}>{title.toUpperCase()}</Text>
       </TouchableOpacity>
   )
 }
-
- const getSheet = (iconSize, iconColor) => {
-        return StyleSheet.create({
-            icon : {
-                color: iconColor,
-                fontSize: iconSize
-            }
-        })
-    }
+ 
 
 const styles = StyleSheet.create({
     submitBtn: {
-      backgroundColor: deepPinkHot,
       padding: 16,
       borderRadius: 3,
+      width:'90%',
     },
     submitBtnText:{
       color: white,
@@ -37,6 +33,3 @@ const styles = StyleSheet.create({
       textAlign: 'center'
     }
   })
-  
-
-export default StyledButton

@@ -1,11 +1,14 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { Component } from "react"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { white, windowColor } from "../styles/colors"
 
-class Quiz extends Component {
+export default class Quiz extends Component {
   render() {
-    <View style={styles.container}>
-      <Text>Quiz</Text>
-    </View>;
+    return (
+      <View style={styles.container}>
+        <Text>Quiz</Text>
+      </View>
+    )
   }
 }
 
@@ -20,4 +23,4 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center"
   }
-});
+})

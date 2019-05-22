@@ -4,8 +4,8 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  StyleSheet,
-  Button
+  StyleSheet
+
 } from "react-native"
 import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
 
@@ -19,27 +19,56 @@ SubmitDeckBtn = ({ onPress }) => {
   )
 }
 
-export default class AddQuestion extends Component {
+export default class AddCard extends Component {
   state = {
-    titleQuestion: ""
+    question: '',
+    answer:''
   }
 
   submit = () => {
     console.log("saving card")
+
+    // const { navigation } = this.props
+
+    // const key = uuidv1()
+    
+    // const { question, answer } = this.state
+    
+    // const newQuestion = {
+    //   question,
+    //   answer
+    // }
+
+    // this.props.dispatch(addDeck({
+    //   [key]: newDeck
+    // }))
+
+
+    // saveDeckTitle(key, newDeck)
+    // .then(this.setState(()=> ({title:''})))   
+    
+    // navigation.goBack()
+
   }
 
   render() {
-    const { titleQuestion } = this.state
+    const { question, answer } = this.state
 
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={styles.name}>What is the your new question?</Text>
         <TextInput
-          value={titleQuestion}
+          value={question}
           style={styles.input}
-          onChangeText={titleQuestion => this.setState({ titleQuestion })}
+          onChangeText={question => this.setState({ question })}
         />
-        <SubmitDeckBtn onPress={this.submit} />
+         <Text style={styles.name}>Answer</Text>
+        <TextInput
+          value={answer}
+          style={styles.input}
+          onChangeText={answer => this.setState({ answer })}
+        />
+        <SubmitDeckBtn onPress={this.submit} title='Save Card' />
       </KeyboardAvoidingView>
     )
   }

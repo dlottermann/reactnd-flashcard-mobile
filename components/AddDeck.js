@@ -32,7 +32,18 @@ class AddDeck extends Component {
     const key = uuidv1()
     const { title } = this.state
     
-    saveDeckTitle( key, title )
+    const newDeck = {
+      title,
+      key,
+      questions: []
+    }
+
+    this.props.dispatch(addDeck({
+      [key]: newDeck
+    }))
+
+
+    saveDeckTitle(key, newDeck)
     .then(this.setState(()=> ({title:''})))   
     
     navigation.goBack()
@@ -50,7 +61,7 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={title => this.setState({ title })}
         />
-        <SubmitDeckBtn onPress={this.submit} />
+        <SubmitDeckBtn onPress={this.submit} title='Create Deck' />
       </KeyboardAvoidingView>
     )
   }

@@ -1,11 +1,17 @@
 import React, { Component } from "react"
-import { View, FlatList, Text, StyleSheet, AsyncStorage, TouchableOpacity } from "react-native"
+import {
+  View,
+  FlatList,
+  Text,
+  StyleSheet,
+  AsyncStorage,
+  TouchableOpacity
+} from "react-native"
 import { white, lightGray, bodyColor, windowColor } from "../styles/colors"
 import { AppLoading } from "expo"
 import { connect } from "react-redux"
 import { getDecks } from "../utils/api"
 import { receiveDecks } from "../actions"
-
 
 class Dashboard extends Component {
   state = {
@@ -14,29 +20,26 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    // AsyncStorage.clear()
+   // AsyncStorage.clear()   
     getDecks()
       .then(entries => dispatch(receiveDecks(entries)))
       .then(() => this.setState(() => ({ loading: false })))
   }
 
- /* onPress={() => this.props.navigation.navigate(
-              'EntryDetail',
-              { entryId: key }
-            )} */
-
   renderItemDeck = ({ item }) => {
+   
     return (
-    <TouchableOpacity 
- 	onPress={() => console.log('Pressed!')}    
-	> 
-      <View style={styles.line}>
-        <Text style={styles.name}>{item.title}</Text>
-        <Text style={styles.total}>
-          {Object.values(item.questions).length} Cards
-        </Text>
-      </View>
-	</TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => console.log("Pressed!",item)}
+        onPress={() => this.props.navigation.navigate("Deck", { deck: item, total: Object.values(item.questions).length })}
+      >
+        <View style={styles.line}>
+          <Text style={styles.name}>{item.title}</Text>
+          <Text style={styles.total}>
+            {Object.values(item.questions).length} Cards
+          </Text>
+        </View>
+      </TouchableOpacity>
     )
   }
 
@@ -44,12 +47,11 @@ class Dashboard extends Component {
     const { loading } = this.state
     const { decks } = this.props
 
-    
     if (loading) <AppLoading />
 
     return (
       <View style={styles.container}>
-        { !decks ? (
+        {!decks ? (
           <Text>You have not decks registered</Text> // this only appears on error
         ) : (
           <FlatList
@@ -83,11 +85,11 @@ const styles = StyleSheet.create({
     padding: 24,
     borderRadius: 5,
     margin: 4,
-	backgroundColor: windowColor,
-	shadowColor: '#000',
+    backgroundColor: windowColor,
+    shadowColor: "#000",
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowRadius: 3
   },
   name: {
     fontFamily: "Verdana",

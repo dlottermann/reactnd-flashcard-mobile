@@ -4,14 +4,14 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native"
-import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
+import { white, deepPinkHot } from "../../styles/colors"
 
-const SubmitDeckBtn = ({ onPress, title, ...props }) => {
+const StyledButton = ( onPress, title ) => {
   return (
       <TouchableOpacity
        style={styles.submitBtn}
        onPress={onPress}>
-          <Text style={styles.submitBtnText}>{title}</Text>
+          <Text style={styles.submitBtnText}>{title||'teste'}</Text>
       </TouchableOpacity>
   )
 }
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   })
   
 
-export default SubmitDeckBtn
+export default StyledButton

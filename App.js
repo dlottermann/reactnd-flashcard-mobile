@@ -2,6 +2,8 @@ import React from "react"
 import { StyleSheet, Platform, View } from "react-native"
 import Dashboard from "./components/Dashboard"
 import AddDeck from "./components/AddDeck"
+import AddCard from "./components/AddCard"
+import Quiz from "./components/Quiz"
 import Deck from "./components/Deck"
 import { bodyColor, white, purple } from "./styles/colors"
 import { createStore } from "redux"
@@ -78,12 +80,14 @@ const MainNavigator = createAppContainer(createStackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
+      headerTintColor: bodyColor,
       headerStyle: {
         backgroundColor: bodyColor,
       },
     }),
   },
+  AddCard:AddCard,
+  Quiz:Quiz,
 }));
 
 

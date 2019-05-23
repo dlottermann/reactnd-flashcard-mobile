@@ -20,23 +20,23 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-   // AsyncStorage.clear()   
+    //AsyncStorage.clear()   
     getDecks()
       .then(entries => dispatch(receiveDecks(entries)))
       .then(() => this.setState(() => ({ loading: false })))
   }
 
   renderItemDeck = ({ item }) => {
-   
+    const { decks } = this.props
+
     return (
       <TouchableOpacity
-        onPress={() => console.log("Pressed!",item)}
-        onPress={() => this.props.navigation.navigate("Deck", { deck: item, total: Object.values(item.questions).length })}
+        onPress={() => this.props.navigation.navigate("Deck", { deckId: item })}
       >
         <View style={styles.line}>
-          <Text style={styles.name}>{item.title}</Text>
+          <Text style={styles.name}>{decks[item].title}</Text>
           <Text style={styles.total}>
-            {Object.values(item.questions).length} Cards
+            {decks[item].questions.length} Cards
           </Text>
         </View>
       </TouchableOpacity>
@@ -55,9 +55,9 @@ class Dashboard extends Component {
           <Text>You have not decks registered</Text> // this only appears on error
         ) : (
           <FlatList
-            data={Object.values(decks)}
+            data={Object.keys(decks)}
             renderItem={this.renderItemDeck}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={item => item}
           />
         )}
       </View>

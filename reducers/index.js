@@ -8,11 +8,21 @@ const reducerDecks = (state = {}, action) => {
         ...action.decks
       }
     case ADD_DECK:
-      return{
+      return {
         ...state,
         ...action.deck
       }
-
+    case ADD_CARD:
+      
+      const updateQuestion = state[action.deckId].questions.concat(action.card);
+      
+      return {
+        ...state,
+        [action.deckId]: {
+          ...state[action.deckId],
+          questions: updateQuestion,
+        },
+      }
     default:
       return state
   }

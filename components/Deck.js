@@ -13,23 +13,24 @@ import { connect } from "react-redux"
 
 class Deck extends Component {
   render() {
-    const { title } = this.props.navigation.state.params.deck
+    const { title, questions } = this.props.deck
+
     return (
       <View style={styles.line}>
         <Text style={styles.name}>{title}</Text>
         <Text style={styles.total}>
-          {this.props.navigation.state.params.total} Cards
+          { Object.keys(questions).length} Cards
         </Text>
-        <SubmitDeckBtn
+        <StyledButton
           title="Add Card"
           backColor={darkCyan}
           onPress={() => {
-            this.props.navigation.navigate("AddCard", {})
+            this.props.navigation.navigate("AddCard", { deckId: this.props.deckId })
           }}
         />
-        <SubmitDeckBtn
+        <StyledButton
           title="Start Quiz"
-          backColor={orange},
+          backColor={orange}
           onPress={()=>{ this.props.navigation.navigate('Quiz',{}) } }
         />
       </View>
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, { navigation }) => {
   const { deckId } = navigation.state.params;
+  
   return {
     deckId,
     deck: state[deckId],

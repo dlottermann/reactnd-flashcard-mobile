@@ -17,9 +17,10 @@ export const addDeck = (deck) => {
     }
 }
 
-export const addCard = (card) => {
+export const addCard = (deckId, card) => {
     return {
         type:ADD_CARD,
+        deckId,
         card
     }
 }

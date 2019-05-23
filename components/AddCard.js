@@ -7,20 +7,11 @@ import {
   StyleSheet
 } from "react-native"
 import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
-import {saveDeckTitle} from '../utils/api'
+import { addCardToDeck } from '../utils/api'
 import { connect } from "react-redux"
 import { addCard } from "../actions"
+import { StyledButton } from './shared/StyledButton'
 
-
-SubmitDeckBtn = ({ onPress }) => {
-  return (
-      <TouchableOpacity
-       style={styles.submitBtn}
-       onPress={onPress}>
-          <Text style={styles.submitBtnText}>Create Question</Text>
-      </TouchableOpacity>
-  )
-}
 
 class AddCard extends Component {
   state = {
@@ -33,12 +24,12 @@ class AddCard extends Component {
      const { navigation, deckId, dispatch } = this.props    
      const newCard = this.state
 
-     this.props.dispatch(addCard({ deckId, newDeck }))
+     dispatch(addCard( deckId, newCard))
 
      addCardToDeck(deckId, newCard)
      .then(this.setState(()=> ({question:'', answer:''})))   
     
-     navigation.navigate('Deck',{deckId:deckId})
+     navigation.navigate('Deck',{ deckId:deckId })
 
   }
 
@@ -59,7 +50,7 @@ class AddCard extends Component {
           style={styles.input}
           onChangeText={answer => this.setState({ answer })}
         />
-        <SubmitDeckBtn onPress={this.submit} title='Save Card' />
+        <StyledButton onPress={this.submit} title='Save Card' backColor={ deepPinkHot } />
       </KeyboardAvoidingView>
     )
   }
@@ -111,7 +102,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state,{ navigation }) => {
- const { deckId } = navigation.state.params
+  const { deckId } = navigation.state.params
   return {
     deckId,
   }

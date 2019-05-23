@@ -7,11 +7,12 @@ import {
   StyleSheet
 } from "react-native"
 import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
-import uuidv1 from 'uuid/v1'
-import {saveDeckTitle} from '../utils/api'
+import uuidv1 from "uuid/v1"
+import { saveDeckTitle } from "../utils/api"
 import { connect } from "react-redux"
 import { addDeck } from "../actions"
-import { StyledButton } from './shared/StyledButton'
+import { StyledButton } from "./shared/StyledButton"
+import { camelize, createDeck } from "../utils/helpers"
 
 class AddDeck extends Component {
   state = {
@@ -19,26 +20,19 @@ class AddDeck extends Component {
   }
 
   submit = () => {
-    const { navigation } = this.props
-    const key = uuidv1()
+    const { navigation, dispatch } = this.props
     const { title } = this.state
-    
+
     const newDeck = {
-      title,
-      key,
-      questions: []
+      [camelize(title)]: {
+        title,
+        questions: []
+      }
     }
 
-    this.props.dispatch(addDeck({
-      [key]: newDeck
-    }))
-
-
-    saveDeckTitle(key, newDeck)
-    .then(this.setState(()=> ({title:''})))   
-    
+    saveDeckTitle(newDeck).then(this.setState(() => ({ title: "" })))
+    dispatch(addDeck(newDeck))
     navigation.goBack()
- 
   }
 
   render() {
@@ -52,7 +46,11 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={title => this.setState({ title })}
         />
-        <SubmitDeckBtn onPress={this.submit} title='Create Deck' backColor={ deepPinkHot } />
+        <StyledButton
+          onPress={this.submit}
+          title="Create Deck"
+          backColor={deepPinkHot}
+        />
       </KeyboardAvoidingView>
     )
   }
@@ -94,12 +92,12 @@ const styles = StyleSheet.create({
   submitBtn: {
     backgroundColor: deepPinkHot,
     padding: 16,
-    borderRadius: 3,
+    borderRadius: 3
   },
-  submitBtnText:{
+  submitBtnText: {
     color: white,
     fontSize: 16,
-    textAlign: 'center'
+    textAlign: "center"
   }
 })
 

@@ -4,7 +4,6 @@ export const FLASHCARD_STORAGE_KEY = "FlashCardMobile"
 //Criar default decks
 let decks = {
   React: {
-    key:'6f31f7a2-7c26-11e9-8f9e-2a86e4085a59',
     title: "React",
     questions: [
       {
@@ -18,7 +17,6 @@ let decks = {
     ]
   },
   JavaScript: {
-    key:'6f31fa04-7c26-11e9-8f9e-2a86e4085a59',
     title: "JavaScript",
     questions: [
       {

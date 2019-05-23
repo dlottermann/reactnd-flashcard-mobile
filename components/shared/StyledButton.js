@@ -6,7 +6,7 @@ import {
 } from "react-native"
 import { white, deepPinkHot } from "../../styles/colors"
 
-export default const StyledButton = ({
+export const StyledButton = ({
   title = 'Click Me!',
   onPress,
   backColor = deepPinkHot,
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
       padding: 16,
       borderRadius: 3,
       width:'90%',
+      marginTop:6,
     },
     submitBtnText:{
       color: white,

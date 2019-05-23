@@ -70,28 +70,44 @@ const Tabs =
 
 // const TabsContainer = createAppContainer(Tabs)
 
-const MainNavigator = createAppContainer(createStackNavigator({
-  home: {
-    screen: Tabs,
-    navigationOptions: {
-      header: null,
+const MainNavigator = createAppContainer(
+  createStackNavigator({
+    home: {
+      screen: Tabs,
+      navigationOptions: {
+        header: null
+      }
     },
-  },
-  Deck: {
-    screen: Deck,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: bodyColor,
-      headerStyle: {
-        backgroundColor: bodyColor,
-      },
-    }),
-  },
-  AddCard:AddCard,
-  Quiz:Quiz,
-}));
+    Deck: {
+      screen: Deck,
+      navigationOptions: ({ navigation }) => ({
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: bodyColor
+        }
+      })
+    },
+    AddCard: {
+      screen: AddCard,
+      navigationOptions: ({ navigation }) => ({
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: bodyColor
+        }
+      })
+    },
+    Quiz: {
+      screen: Quiz,
+      navigationOptions: ({ navigation }) => ({
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: bodyColor
+        }
+      })
+    }
+  })
+)
 
-
-    
 const styles = StyleSheet.create({
   container: {
     flex: 1,

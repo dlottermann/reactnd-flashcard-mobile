@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import { white, windowColor } from "../styles/colors"
+import { white, windowColor, deepPink, deepPinkHot } from "../styles/colors"
 import { connect } from 'react-redux'
+import { StyledButton } from './shared/StyledButton'
+import Deck from './Deck'
 
 class Quiz extends Component {
   state = {

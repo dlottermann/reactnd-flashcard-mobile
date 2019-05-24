@@ -59,13 +59,13 @@ class AddCard extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingTop: "50%",
+    paddingTop:35,
     borderRadius: 8,
     backgroundColor: windowColor,
     alignSelf: "center",
     width: "93%",
-    height: "70%",
-    marginTop: 100,
+    height: "50%",
+    marginTop: 25,
     fontSize: 24,
     shadowColor: "#000",
     shadowOffset: { width: 1, height: 2 },
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3
   },
   name: {
-    fontFamily: "Verdana",
     fontSize: 18,
     textAlign: "center",
     color: white,

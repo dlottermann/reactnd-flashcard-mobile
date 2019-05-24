@@ -13,7 +13,7 @@ class Quiz extends Component {
   
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.line}>
         <Text>Quiz</Text>
       </View>
     )
@@ -21,10 +21,20 @@ class Quiz extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: white
+  line: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    backgroundColor: windowColor,
+    alignSelf: "center",
+    width: "93%",
+    height: "50%",
+    marginTop: 5,
+    fontSize: 24,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 3
   },
   row: {
     flexDirection: "row",

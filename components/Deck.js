@@ -31,7 +31,7 @@ class Deck extends Component {
         <StyledButton
           title="Start Quiz"
           backColor={orange}
-          onPress={()=>{ this.props.navigation.navigate('Quiz',{}) } }
+          onPress={()=>{ this.props.navigation.navigate('Quiz', { deckId: this.props.deckId }) } }
         />
       </View>
     )
@@ -42,13 +42,12 @@ const styles = StyleSheet.create({
   line: {
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: "50%",
     borderRadius: 8,
     backgroundColor: windowColor,
     alignSelf: "center",
     width: "93%",
-    height: "70%",
-    marginTop: 100,
+    height: "50%",
+    marginTop: 5,
     fontSize: 24,
     shadowColor: "#000",
     shadowOffset: { width: 1, height: 2 },
@@ -56,13 +55,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3
   },
   name: {
-    fontFamily: "Verdana",
     fontSize: 18,
     color: white,
     fontWeight: "bold"
   },
   total: {
-    fontFamily: "Verdana",
     fontSize: 14,
     color: lightGray
   }

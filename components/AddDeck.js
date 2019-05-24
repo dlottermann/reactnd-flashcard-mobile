@@ -59,12 +59,12 @@ class AddDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingTop: "50%",
+    paddingTop: 35,
     borderRadius: 8,
     backgroundColor: windowColor,
     alignSelf: "center",
     width: "93%",
-    height: "70%",
+    height: "40%",
     marginTop: 100,
     fontSize: 24,
     shadowColor: "#000",
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3
   },
   name: {
-    fontFamily: "Verdana",
     fontSize: 18,
     textAlign: "center",
     color: white,

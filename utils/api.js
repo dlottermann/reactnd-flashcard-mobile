@@ -22,7 +22,7 @@ export const saveDeckTitle = (  deck  ) => {
 export const addCardToDeck = (key, card) => {
     return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then((data) => {
         let decks = JSON.parse(data)   
-        decks[key].questions.concat([card])
+        decks[key].questions.push(card)
         AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify(decks))
     })
 }

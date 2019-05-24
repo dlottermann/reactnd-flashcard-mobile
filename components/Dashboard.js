@@ -13,6 +13,7 @@ import { connect } from "react-redux"
 import { getDecks } from "../utils/api"
 import { receiveDecks } from "../actions"
 
+
 class Dashboard extends Component {
   state = {
     loading: true
@@ -92,13 +93,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3
   },
   name: {
-    fontFamily: "Verdana",
     fontSize: 18,
     color: white,
     fontWeight: "bold"
   },
   total: {
-    fontFamily: "Verdana",
     fontSize: 14,
     color: lightGray
   }

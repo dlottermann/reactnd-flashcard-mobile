@@ -5,7 +5,13 @@ import AddDeck from "./components/AddDeck"
 import AddCard from "./components/AddCard"
 import Quiz from "./components/Quiz"
 import Deck from "./components/Deck"
-import { bodyColor, white, purple, darkCyan } from "./styles/colors"
+import {
+  bodyColor,
+  white,
+  purple,
+  darkCyan,
+  windowColor
+} from "./styles/colors"
 import { createStore } from "redux"
 import { Provider } from "react-redux"
 import reducer from "./reducers"
@@ -81,7 +87,8 @@ const MainNavigator = createAppContainer(
     Deck: {
       screen: Deck,
       navigationOptions: ({ navigation }) => ({
-        headerTintColor: white,
+        title: "Deck",
+        headerTintColor: windowColor,
         headerStyle: {
           backgroundColor: bodyColor
         }
@@ -89,8 +96,9 @@ const MainNavigator = createAppContainer(
     },
     AddCard: {
       screen: AddCard,
+      title: "New Card",
       navigationOptions: ({ navigation }) => ({
-        headerTintColor: white,
+        headerTintColor: windowColor,
         headerStyle: {
           backgroundColor: bodyColor
         }
@@ -98,8 +106,9 @@ const MainNavigator = createAppContainer(
     },
     Quiz: {
       screen: Quiz,
+      title: "Quiz",
       navigationOptions: ({ navigation }) => ({
-        headerTintColor: white,
+        headerTintColor: windowColor,
         headerStyle: {
           backgroundColor: bodyColor
         }

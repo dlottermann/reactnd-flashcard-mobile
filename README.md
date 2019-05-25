@@ -1,24 +1,34 @@
-# Project Description
+# Flashcards Mobile - A App built with React native
 
-This is a project of the Nanodegree React from Udacity, focusing on React Native.
+This is a project from Nanodegree React from Udacity, focused on React Native.
 
-The focus of this application is to record and manipulate posts and comments using a local Node server and manage application state with redux. All data is manipulated with actions and reducers and then registered in the state.
+The focus of this application is to write and manipulate decks and cards using an AsynStorage (local storage),
+all data is manipulated using redux with actions and reducers and then recorded in asyncstorage.
 
-The user can create, edit and delete posts and comments besides being able to vote through UP or Down.
+The user can create, decks and add card in the respective deck, each deck allows to practice a quiz with the deck cards.
 
-Filter by categories and sort by date of posting or punctuation, are also functionality present in the application
+End of the quiz is made final score with the option to start over.
+
+Local notifications for studies were enabled by default
 
 <br />
 
 ### Start App
+
+You will need Node, NPM or Yarn local environment - yarn is recommended
+
+You will need react native in yout local environment and Expo CLI for more informations https://expo.io/
+
 Before start the app, we need run the follow commands. <br />
 -- In the project's root folder, run `yarn` or `npm install` .<br /> 
 
--- After installing the dependencies, run `expo start` to start the project. <br />
+-- After installing the dependencies, run `expo start` or `yarn start` to start the project. <br />
 
-Obs:
-This project use EXPO https://expo.io/
+The project open a new tab in your default browser with expo cli connection page - To run the project you will need the emulator or device
 
 <br />
 
 
+## Authors
+
+- [Diego Lottermann](https://github.com/dlottermann) - Full Stack Developer

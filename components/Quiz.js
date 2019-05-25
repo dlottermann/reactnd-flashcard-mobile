@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux"
 import { CardQuestion, CardAnswer } from "./Card"
 import { StyledButton } from "./shared/StyledButton"
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers"
 
 ResultQuiz = ({
   totalQuestions,
@@ -19,6 +20,9 @@ ResultQuiz = ({
   resetQuiz,
   backToDeck
 }) => {
+  //clear notification and set tomorrow
+  clearLocalNotification()
+    .then(setLocalNotification())
   return (
     <View style={styles.line}>
       <Text style={{ color: darkCyan, fontSize: 26 }}>

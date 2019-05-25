@@ -1,5 +1,5 @@
 import { AsyncStorage } from "react-native"
-export const FLASHCARD_STORAGE_KEY = "FlashCardMobile"
+export const FLASHCARD_STORAGE_KEY = "FlashCardMobile:cards"
 
 //Criar default decks
 let decks = {

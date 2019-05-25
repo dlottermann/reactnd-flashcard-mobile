@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   View,
   FlatList,
@@ -6,13 +6,13 @@ import {
   StyleSheet,
   AsyncStorage,
   TouchableOpacity
-} from "react-native"
-import { white, lightGray, bodyColor, windowColor } from "../styles/colors"
-import { AppLoading } from "expo"
-import { connect } from "react-redux"
-import { getDecks } from "../utils/api"
-import { receiveDecks } from "../actions"
-
+} from 'react-native'
+import { white, lightGray, bodyColor, windowColor } from '../styles/colors'
+import { AppLoading } from 'expo'
+import { connect } from 'react-redux'
+import { getDecks } from '../utils/api'
+import { receiveDecks } from '../actions'
+import { setLocalNotification } from '../utils/helpers'
 
 class Dashboard extends Component {
   state = {
@@ -21,7 +21,8 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    //AsyncStorage.clear()   
+    setLocalNotification()
+    //AsyncStorage.clear()
     getDecks()
       .then(entries => dispatch(receiveDecks(entries)))
       .then(() => this.setState(() => ({ loading: false })))
@@ -32,13 +33,11 @@ class Dashboard extends Component {
 
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("Deck", { deckId: item })}
+        onPress={() => this.props.navigation.navigate('Deck', { deckId: item })}
       >
         <View style={styles.line}>
           <Text style={styles.name}>{decks[item].title}</Text>
-          <Text style={styles.total}>
-            {decks[item].questions.length} Cards
-          </Text>
+          <Text style={styles.total}>{decks[item].questions.length} Cards</Text>
         </View>
       </TouchableOpacity>
     )
@@ -69,25 +68,25 @@ class Dashboard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "stretch",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'stretch',
     marginTop: 50,
     paddingLeft: 5,
     paddingRight: 5,
     backgroundColor: bodyColor,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 1,
     shadowRadius: 3
   },
   line: {
-    alignItems: "center",
+    alignItems: 'center',
     padding: 24,
     borderRadius: 5,
     margin: 4,
     backgroundColor: windowColor,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 1,
     shadowRadius: 3
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     color: white,
-    fontWeight: "bold"
+    fontWeight: 'bold'
   },
   total: {
     fontSize: 14,

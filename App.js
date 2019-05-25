@@ -1,26 +1,26 @@
-import React from "react"
-import { StyleSheet, Platform, View } from "react-native"
-import Dashboard from "./components/Dashboard"
-import AddDeck from "./components/AddDeck"
-import AddCard from "./components/AddCard"
-import Quiz from "./components/Quiz"
-import Deck from "./components/Deck"
+import React from 'react'
+import { StyleSheet, Platform, View } from 'react-native'
+import Dashboard from './components/Dashboard'
+import AddDeck from './components/AddDeck'
+import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
+import Deck from './components/Deck'
 import {
   bodyColor,
   white,
   purple,
   darkCyan,
   windowColor
-} from "./styles/colors"
-import { createStore } from "redux"
-import { Provider } from "react-redux"
-import reducer from "./reducers"
+} from './styles/colors'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 import {
   createBottomTabNavigator,
   createMaterialTopTabNavigator,
   createAppContainer,
   createStackNavigator
-} from "react-navigation"
+} from 'react-navigation'
 
 export default class App extends React.Component {
   render() {
@@ -38,13 +38,13 @@ const RouteConfigs = {
   Dashboard: {
     screen: Dashboard,
     navigationOptions: {
-      tabBarLabel: "Decks"
+      tabBarLabel: 'Decks'
     }
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      tabBarLabel: "New Deck"
+      tabBarLabel: 'New Deck'
     }
   }
 }
@@ -54,11 +54,11 @@ const TabNavigatorConfig = {
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === "ios" ? purple : white,
+    activeTintColor: Platform.OS === 'ios' ? purple : white,
     style: {
       height: 56,
-      backgroundColor: Platform.OS === "ios" ? white : purple,
-      shadowColor: "rgba(0, 0, 0, 0.24)",
+      backgroundColor: Platform.OS === 'ios' ? white : purple,
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
         height: 3
@@ -70,7 +70,7 @@ const TabNavigatorConfig = {
 }
 
 const Tabs =
-  Platform.OS === "ios"
+  Platform.OS === 'ios'
     ? createBottomTabNavigator(RouteConfigs, TabNavigatorConfig)
     : createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig)
 
@@ -87,7 +87,7 @@ const MainNavigator = createAppContainer(
     Deck: {
       screen: Deck,
       navigationOptions: ({ navigation }) => ({
-        title: "Deck",
+        title: 'Deck',
         headerTintColor: windowColor,
         headerStyle: {
           backgroundColor: bodyColor
@@ -96,7 +96,7 @@ const MainNavigator = createAppContainer(
     },
     AddCard: {
       screen: AddCard,
-      title: "New Card",
+      title: 'New Card',
       navigationOptions: ({ navigation }) => ({
         headerTintColor: windowColor,
         headerStyle: {
@@ -106,7 +106,7 @@ const MainNavigator = createAppContainer(
     },
     Quiz: {
       screen: Quiz,
-      title: "Quiz",
+      title: 'Quiz',
       navigationOptions: ({ navigation }) => ({
         headerTintColor: windowColor,
         headerStyle: {

@@ -22,6 +22,7 @@ class AddDeck extends Component {
   submit = () => {
     const { navigation, dispatch } = this.props
     const { title } = this.state
+    const deckId = camelize(title)
 
     const newDeck = {
       [camelize(title)]: {
@@ -32,7 +33,7 @@ class AddDeck extends Component {
 
     saveDeckTitle(newDeck).then(this.setState(() => ({ title: "" })))
     dispatch(addDeck(newDeck))
-    navigation.goBack()
+    navigation.navigate('Deck',{ deckId:deckId })
   }
 
   render() {

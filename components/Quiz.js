@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, PureComponent } from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import {
   white,
@@ -13,7 +13,7 @@ import { CardQuestion, CardAnswer } from "./Card"
 import { StyledButton } from "./shared/StyledButton"
 import { clearLocalNotification, setLocalNotification } from "../utils/helpers"
 
-ResultQuiz = ({
+const ResultQuiz = ({
   totalQuestions,
   corrects,
   incorrects,
@@ -46,7 +46,7 @@ ResultQuiz = ({
   )
 }
 
-class Quiz extends Component {
+class Quiz extends PureComponent {
   state = {
     idxQuiz: 0,
     showAnswer: false,
